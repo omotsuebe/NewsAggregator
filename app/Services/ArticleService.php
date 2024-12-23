@@ -42,7 +42,7 @@ class ArticleService
 
             // Filter by date range (from and to dates)
             if (! empty($filters['from_date']) && ! empty($filters['to_date'])) {
-                $query->whereBetween('created_at', [$filters['from_date'], $filters['to_date']]);
+                $query->articleBetweenDates([$filters['from_date'], $filters['to_date']]);
             }
 
             // Order by published date (descending by default)
@@ -54,15 +54,13 @@ class ArticleService
 
             return $query->paginate($perPage, ['*'], 'page', $currentPage);
         } catch (\Throwable $e) {
-            Log::error('Error in ArticleService::search: ' . $e->getMessage());
+            Log::error('Error in ArticleService::search: '.$e->getMessage());
             throw new \Exception('Failed to fetch articles.');
         }
     }
 
     /**
      * Fetch article
-     * @param $id
-     * @return Article
      */
     public function show($id): Article
     {
@@ -71,9 +69,8 @@ class ArticleService
         } catch (ModelNotFoundException $exception) {
             throw new \Exception('No record found.', 404);
         } catch (\Throwable $e) {
-            Log::error('Error in ArticleService::show: ' . $e->getMessage());
+            Log::error('Error in ArticleService::show: '.$e->getMessage());
             throw new \Exception('Failed to fetch article.');
         }
     }
-
 }

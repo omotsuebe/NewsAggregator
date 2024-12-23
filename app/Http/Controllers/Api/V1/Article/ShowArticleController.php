@@ -23,7 +23,7 @@ class ShowArticleController extends BaseApiController
             $statusCode = $exception->getCode() === 404 ? 404 : 500;
             $errorMessage = $statusCode === 404 ? $exception->getMessage() : 'An unexpected error occurred. Please try again later.';
 
-            Log::error('Error in ShowArticleController: ' . $exception->getMessage());
+            Log::error('Error in ShowArticleController: '.$exception->getMessage());
 
             return $this->jsonError($errorMessage, $statusCode);
         }

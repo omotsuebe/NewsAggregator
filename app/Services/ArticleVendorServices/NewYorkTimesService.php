@@ -44,7 +44,6 @@ class NewYorkTimesService implements NewsServiceInterface
     public function saveArticles(): void
     {
         $queryParams = [
-            //'q' => 'technology',
             'begin_date' => Carbon::today()->format('Ymd'),
             'end_date' => Carbon::today()->format('Ymd'),
             'sort' => 'newest',

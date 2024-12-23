@@ -1,16 +1,21 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
 ## News Aggregator Backend
 
-News aggregator API that pulls articles from various sources and serves them to the frontend application.
+This project is a Laravel application designed to fetches articles from multiple sources using their respective APIs.
+ The articles are stored in a local database. Stored articles supports searching, filtering, and respecting user preferences.
 
+### Features
+
+- Retrieve articles from multiple sources (e.g., NewsAPI, The Guardian, New York Times).
+- Filter articles by categories, authors, sources, and dates.
+- Search functionality with advanced query support.
+- Pagination with a maximum limit of 20 articles per page.
+- Configurable article fetching limits and API keys.
+- Manually fetch articles using the Artisan command.
+- Schedule automatic fetching of articles every two hours.
+- Continuous Integration (CI): Automated tests run during every pull request or push.
+- Instruct Pint to fix code style issues (`./vendor/bin/pint`)
 
 ### Data Sources
 
@@ -57,6 +62,20 @@ The application integrates with the following APIs to fetch news articles:
     ```sh
      php artisan migrate
     ```
+### Key Configuration
+
+- **NEWS_API_KEY:** API key for NewsAPI.
+- **GUARDIAN_API_KEY:** API key for The Guardian.
+- **NEW_YORK_TIMES_API_KEY:** API key for The New York Times.
+- **ARTICLE_MAX:** Maximum number of articles fetched per API source in one cycle.
+
+```php
+NEWS_API_KEY=enter_key_here
+GUARDIAN_API_KEY=enter_key_here
+NEW_YORK_TIMES_API_KEY=enter_key_here
+ARTICLE_MAX=100
+```
+
 ### Serving the Application
 To serve the application locally, use the following command
    ```sh
@@ -66,6 +85,7 @@ To serve the application locally, use the following command
    ```
 
 ### Running Scheduled Tasks
+
 **Fetching and saving articles**
 
 - To fetch articles from the configured sources and save them to the database, use:
@@ -74,11 +94,93 @@ To serve the application locally, use the following command
    ```
 
 **Scheduling Fetching and saving articles** 
-- Set up a CRON job to run the schedule:run command every two hours:
+- Set up a CRON job to run the `schedule:run` command every two hours:
    ```sh
     * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
    ``` 
 [ Learn more about laravel scheduling](https://laravel.com/docs/11.x/scheduling)
+
+### Usage
+
+**Search and Filter**
+
+Use the search and filtering features to retrieve articles based on:
+
+- **Search Queries:** Match titles or descriptions.
+- **Filters:** Filter by date, category, source, or author.
+- **Pagination:** Navigate through articles with a maximum of 20 articles per page.
+
+**Example API Endpoints**
+
+**Fetch Articles:** 
+- `GET /api/v1/articles`
+
+**Optional Query parameters:**
+
+- `search:` Search keywords.
+- `category:` Filter by category (e.g `Foreign` | `Sports`  | `Technology`).
+- `source:` Filter by source (`News API` | `New York Times` | `Guardian`).
+- `author:` Filter by author.
+- `from_date:` Start date for filtering (e.g `2024-12-21`).
+- `to_date:` End date for filtering (e.g `2024-12-22`)
+- `limit:` Number of articles per page (default: 10, max: 20).
+- `page:` Current page number (default: 1)
+
+**Sample API Response**
+When fetching articles, the API returns a structured JSON response:
+```json
+{
+    "result": true,
+    "status": "success",
+    "message": "Articles fetched",
+    "data": {
+        "articles": [
+            {
+                "id": 1,
+                "title": "Sample Article",
+                "author": "Author 1",
+                "description": "This is a description of the sample article.",
+                "url": "https://example.com/sample-article",
+                "category": "Technology",
+                "source": "Source 1",
+                "published_at": "2024-12-21T23:40:56+0000",
+                "created_at": "2024-12-21T23:40:56+0000",
+                "updated_at": "2024-12-21T23:40:56+0000"
+            }
+        ],
+        "meta": {
+            "current_page": 1,
+            "last_page": 10,
+            "per_page": 10,
+            "total": 100
+        }
+    }
+}
+```
+
+- `GET /api/v1/article/{id}`
+```json
+{
+    "result": true,
+    "status": "success",
+    "message": "Article fetched",
+    "data": {
+        "articles": {
+            "id": 1,
+            "title": "Sample Article",
+            "author": "Author 1",
+            "description": "This is a description of the sample article.",
+            "url": "https://example.com/sample-article",
+            "category": "Technology",
+            "source": "Source 1",
+            "published_at": "2024-12-21T23:40:56+0000",
+            "created_at": "2024-12-21T23:40:56+0000",
+            "updated_at": "2024-12-21T23:40:56+0000"
+        }
+    }
+}
+
+```
 
 ### Running Tests
 

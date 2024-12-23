@@ -46,8 +46,8 @@ class NewsAPIService implements NewsServiceInterface
     {
         $queryParams = [
             'q' => 'sports',
-            'from' => Carbon::today()->toDateString(),
-            'to' => Carbon::today()->toDateString(),
+            //'from' => Carbon::today()->toDateString(),
+            //'to' => Carbon::today()->toDateString(),
             'sortBy' => 'newest',
         ];
 

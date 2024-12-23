@@ -28,9 +28,9 @@ class SearchArticleController extends BaseApiController
                 ],
             ], 'Articles fetched');
         } catch (\Exception $exception) {
-            Log::error('Error in SearchArticleController: ' . $exception->getMessage());
+            Log::error('Error in SearchArticleController: '.$exception->getMessage());
 
-            return $this->jsonError('An unexpected error occurred. Please try again later.', 500);
+            return $this->jsonError('An unexpected error occurred. Please try again later.');
         }
     }
 }

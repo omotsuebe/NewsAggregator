@@ -9,36 +9,35 @@ class ShowArticleControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testShowArticleSuccess(): void
+    public function test_show_article_success(): void
     {
         $article = Article::factory()->create();
 
-        $this->getJson('/api/v1/article/' . $article->id)
+        $this->getJson('/api/v1/article/'.$article->id)
             ->assertStatus(Response::HTTP_OK)
-                 ->assertJson([
-                     'result' => true,
-                     'status' => 'success',
-                     'message' => 'Article fetched',
-                     'data' => [
-                         'articles' => [
-                             'id' => $article->id,
-                             'title' => $article->title,
-                             'description' => $article->description,
-                         ],
-                     ],
-                 ]);
+            ->assertJson([
+                'result' => true,
+                'status' => 'success',
+                'message' => 'Article fetched',
+                'data' => [
+                    'articles' => [
+                        'id' => $article->id,
+                        'title' => $article->title,
+                        'description' => $article->description,
+                    ],
+                ],
+            ]);
     }
 
-    public function testShowArticleWithInvalidId(): void
+    public function test_show_article_with_invalid_id(): void
     {
         $this->getJson('/api/v1/article/invalid-id')
             ->assertStatus(404)
-                 ->assertJson([
-                     'result' => false,
-                     'status' => 'error',
-                     'message' => 'No record found.',
-                     'errors' => [],
-                 ]);
+            ->assertJson([
+                'result' => false,
+                'status' => 'error',
+                'message' => 'No record found.',
+                'errors' => [],
+            ]);
     }
-
 }
