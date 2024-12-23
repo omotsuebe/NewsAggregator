@@ -62,6 +62,20 @@ The application integrates with the following APIs to fetch news articles:
     ```sh
      php artisan migrate
     ```
+### Or Using Docker
+
+Follow these steps
+
+ - Clone the repository
+ - `docker-compose build`
+ - `docker-compose up -d` 
+ - `docker exec news_app composer install`
+ - `docker exec news_app php artisan key:generate`
+ - `docker exec news_app php  artisan  migrate`
+ - `docker exec news_app php  artisan  cache:clear`
+ - `docker exec news_app php  artisan  optimize`
+ - `docker-compose down`
+
 ### Key Configuration
 
 - **NEWS_API_KEY:** API key for NewsAPI.
