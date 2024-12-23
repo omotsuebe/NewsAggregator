@@ -62,19 +62,6 @@ The application integrates with the following APIs to fetch news articles:
     ```sh
      php artisan migrate
     ```
-### Or Using Docker
-
-Follow these steps
-
- - Clone the repository
- - `docker-compose build`
- - `docker-compose up -d` 
- - `docker exec news_app composer install`
- - `docker exec news_app php artisan key:generate`
- - `docker exec news_app php  artisan  migrate`
- - `docker exec news_app php  artisan  cache:clear`
- - `docker exec news_app php  artisan  optimize`
- - `docker-compose down`
 
 ### Key Configuration
 
@@ -97,6 +84,21 @@ To serve the application locally, use the following command
 
     The application will be available at http://localhost:8000
    ```
+### Or Using Docker
+
+Follow these steps
+
+ - Clone the repository
+ - `docker-compose build`
+ - `docker-compose up -d` 
+ - `docker exec news_app composer install`
+ - `docker exec news_app php artisan key:generate`
+ - `docker exec news_app php  artisan  migrate`
+ - `docker exec news_app php  artisan  cache:clear`
+ - `docker exec news_app php  artisan  optimize`
+ - Access: `http://localhost:80`
+ - Terminate: `docker-compose down`
+
 
 ### Running Scheduled Tasks
 
