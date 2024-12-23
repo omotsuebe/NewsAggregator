@@ -66,19 +66,19 @@ To serve the application locally, use the following command
    ```
 
 ### Running Scheduled Tasks
-Fetching and saving articles
+**Fetching and saving articles**
 
 - To fetch articles from the configured sources and save them to the database, use:
    ```sh
     php artisan articles:manage
    ```
 
-Scheduling Fetching and saving articles  
+**Scheduling Fetching and saving articles** 
 - Set up a CRON job to run the schedule:run command every two hours:
    ```sh
     * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
    ``` 
-[ Laravel's Scheduling](https://laravel.com/docs/11.x/scheduling)
+[ Learn more about laravel scheduling](https://laravel.com/docs/11.x/scheduling)
 
 ### Running Tests
 
