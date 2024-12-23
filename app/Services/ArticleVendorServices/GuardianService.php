@@ -39,6 +39,7 @@ class GuardianService implements NewsServiceInterface
     /**
      * Fetch and save articles from The New York Times API to the local database.
      * Uses pagination to limit the number of records fetched and saved.
+     * Continue the loop until it gets to the maximum allowed per circle
      *
      * @throws \Exception If fetching articles fails.
      */

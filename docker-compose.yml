@@ -1,0 +1,33 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: news_app
+    tty: true
+    volumes:
+      - ./:/var/www
+      - ./docker/supervisor/supervisord.conf:/etc/supervisord.conf
+      - ./docker/php/local.ini:/usr/local/etc/php/config/local.ini
+    networks:
+      - laravel-app
+
+  nginx:
+    image: nginx:alpine
+    container_name: app_nginx
+    tty: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - laravel-app
+
+networks:
+  laravel-app:
+    driver: bridge
