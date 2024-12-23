@@ -96,7 +96,7 @@ Follow these steps
  - `docker exec news_app php  artisan  migrate`
  - `docker exec news_app php  artisan  cache:clear`
  - `docker exec news_app php  artisan  optimize`
- - Access: `http://localhost:80`
+ - Access: `http://localhost:8000`
  - Terminate: `docker-compose down`
 
 
