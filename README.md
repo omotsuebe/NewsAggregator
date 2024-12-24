@@ -92,6 +92,7 @@ Follow these steps
  - `docker-compose build`
  - `docker-compose up -d` 
  - `docker exec news_app composer install`
+ - `cp .env.example .env`
  - `docker exec news_app php artisan key:generate`
  - `docker exec news_app php  artisan  migrate`
  - `docker exec news_app php  artisan  cache:clear`
@@ -197,6 +198,8 @@ When fetching articles, the API returns a structured JSON response:
 }
 
 ```
+
+[Posman Docs](https://documenter.getpostman.com/view/8772623/2sAYJ4hzpw)
 
 ### Running Tests
 
