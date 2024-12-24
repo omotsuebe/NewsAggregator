@@ -113,7 +113,7 @@ Follow these steps
 **Scheduling Fetching and saving articles** 
 - Set up a CRON job to run the `schedule:run` command every two hours or so as specified in `routes/console.php`
 
-```sh
+```php
 Schedule::command(ManageArticlesCommand::class)->everyTwoHours();
 ``` 
 and on your server:
@@ -213,5 +213,9 @@ For production `database.sqlite` should be `gitignored`
 ### Running Tests
 
 To run the tests, use the following command:
-```sh
+```php
 php artisan test
+```
+For docker:
+```php
+docker exec news_app php artisan test
