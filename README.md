@@ -16,6 +16,7 @@ This project is a Laravel application designed to fetches articles from multiple
 - Schedule automatic fetching of articles every two hours.
 - Continuous Integration (CI): Automated tests run during every pull request or push.
 - Instruct Pint to fix code style issues (`./vendor/bin/pint`)
+- Support build and run with docker
 
 ### Data Sources
 
@@ -108,6 +109,9 @@ Follow these steps
 - To fetch articles from the configured sources and save them to the database, use:
    ```sh
     php artisan articles:manage
+  
+    For docker:
+    docker exec news_app php artisan articles:manage
    ```
 
 **Scheduling Fetching and saving articles** 
@@ -187,7 +191,7 @@ When fetching articles, the API returns a structured JSON response:
     "status": "success",
     "message": "Article fetched",
     "data": {
-        "articles": {
+        "article": {
             "id": 1,
             "title": "Sample Article",
             "author": "Author 1",

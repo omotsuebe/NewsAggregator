@@ -20,7 +20,7 @@ class ShowArticleControllerTest extends TestCase
                 'status' => 'success',
                 'message' => 'Article fetched',
                 'data' => [
-                    'articles' => [
+                    'article' => [
                         'id' => $article->id,
                         'title' => $article->title,
                         'description' => $article->description,

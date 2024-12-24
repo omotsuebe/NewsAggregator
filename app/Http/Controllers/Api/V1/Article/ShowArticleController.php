@@ -17,7 +17,7 @@ class ShowArticleController extends BaseApiController
             $article = $articleService->show($id);
 
             return $this->jsonSuccessWithData([
-                'articles' => new ArticleResource($article),
+                'article' => new ArticleResource($article),
             ], 'Article fetched');
         } catch (\Exception $exception) {
             $statusCode = $exception->getCode() === 404 ? 404 : 500;

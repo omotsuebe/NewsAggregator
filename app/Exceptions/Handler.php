@@ -11,6 +11,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler
 {
+    /*
+     * Custom error management class
+     * To be used in bootstrap/app.php
+     * */
     public static function configure(Exceptions $exceptions): void
     {
         // Handle validation exceptions
