@@ -201,6 +201,10 @@ When fetching articles, the API returns a structured JSON response:
 
 [Posman Docs](https://documenter.getpostman.com/view/8772623/2sAYJ4hzpw)
 
+### Important
+The `database/database.sqlite` included in the repo is for development and testing purposes only. 
+For production `database.sqlite` should be `gitignored`
+
 ### Running Tests
 
 To run the tests, use the following command:
