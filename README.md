@@ -111,7 +111,12 @@ Follow these steps
    ```
 
 **Scheduling Fetching and saving articles** 
-- Set up a CRON job to run the `schedule:run` command every two hours:
+- Set up a CRON job to run the `schedule:run` command every two hours or so as specified in `routes/console.php`
+
+```sh
+Schedule::command(ManageArticlesCommand::class)->everyTwoHours();
+``` 
+and on your server:
    ```sh
     * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
    ``` 
